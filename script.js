@@ -1,15 +1,22 @@
+// Channels to test
+
 var channels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
 
-var urlStreams = "https://wind-bow.gomix.me/twitch-api/streams/freecodecamp";
 
+
+/* Request to the server and display raw data in screen */
+var urlStreams = "https://wind-bow.gomix.me/twitch-api/streams/ESL_SC2";
 var ttvRequest = new XMLHttpRequest();
 ttvRequest.open('GET', urlStreams, true);
-ttvRequest.send();
-
+// ttvRequest.setRequestHeader("cache-control", "no-cache");
+ttvRequest.send(null);
 ttvRequest.onload = function() {
     if (ttvRequest.readyState === ttvRequest.DONE) {
         if (ttvRequest.status === 200) {
-            document.getElementById('here').innerHTML = '<div class="col-md-12">' + ttvRequest.responseText + '</div>';
+            ttvRequest = JSON.parse(this.responseText);
+
+
+            document.getElementById('here').innerHTML = '<div class="col-md-4">' + ttvRequest.stream.channel.name + '</div>';
         }
     }
 };
