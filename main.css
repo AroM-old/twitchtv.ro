@@ -23,15 +23,27 @@ h1 {
 }
 
 img {
-    max-width: 50px;
-    max-height: 50px;
+    max-width: 70px;
+    max-height: 70px;
     margin: 0;
+    /* padding-right: 5px; */
 }
 
 #channelsInfo {
+    max-width: 800px;
+    margin: 0 auto;
     font-size: 20px;
     font-family: 'Asap';
     font-weight: 700;
     line-height: 3.1ch;
-    display: inline-block;
+    /* display: inline-block; */
+}
+.row {
+    font-size: 1.2em;
+    font-weight: 100;
+    font-family: 'Asap';
+    padding: 10px;
+}
+.hidden {
+    display: none;
 }

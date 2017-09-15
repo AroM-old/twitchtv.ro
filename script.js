@@ -1,4 +1,4 @@
-var channels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+var channels = ["ESL_SC2", "OgamingSC2", "brtt", "freecodecamp", "bige3430", "habathcx", "RobotCaleb","codedminds"];
 
 //Making request of each channel and show data in website
 channels.forEach(function (name) {
@@ -8,21 +8,21 @@ channels.forEach(function (name) {
         if (xhr.readyState === 4) {
             if (xhr.status >= 200 && xhr.status < 400) {
                 var data = JSON.parse(xhr.responseText);
-                var status;
+                var status, game;
                 if (data.stream === null || data.stream === undefined) {
                     status = "Offline";
-                    document.getElementById("channelsInfo").insertAdjacentHTML('afterbegin', '<div class="col-md-3"><img src="https://www.naplesgarden.org/wp-content/themes/naples_botanical/img/notfound.jpg"></div>');
+                    game = "Not Available";
+                    document.getElementById("channelsInfo").insertAdjacentHTML('afterbegin', '<div class="row"><div class="col-md-3"><img src="https://www.naplesgarden.org/wp-content/themes/naples_botanical/img/notfound.jpg"></div><div class="col-md-6"><a href ="https://www.twitch.tv/' + name + '"target="blank">'  + name + '</a></div><div class=col-md-3 center-block>' + status + '</div><div class="col-md-12">' + game +'</div></div>');
                 } else {
                     status = "Online";
-                    document.getElementById("channelsInfo").insertAdjacentHTML('afterbegin', '<div class="col-md-3"><img src="' + data.stream.channel.logo + '"></div>');
+                    document.getElementById("channelsInfo").insertAdjacentHTML('afterbegin', 
+                    '<div class="row"><div class="col-md-3"><img src="' + 
+                    data.stream.channel.logo + '"></div><div class="col-md-6"><a href="https://www.twitch.tv/' + name + '" target="blank">' + name + '</a></div><div class=col-md-3>' + status + '</div><div class="col-md-12">' + data.stream.channel.game +'</div></div>');
                 }
-                console.log(data.stream);
-
-                document.getElementById("channelsInfo").insertAdjacentHTML('beforeend', '<div class="col-md-3">' + name + '</div>');
-                // document.getElementById("channelsInfo").insertAdjacentHTML('beforeend', '<div class="col-md-6">' + data.stream.channel.game +'</div>');
             }
-
         }
     };
+    
     xhr.send();
 });
+    
